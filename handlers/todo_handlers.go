@@ -14,7 +14,7 @@ type TodoHandler struct {
 //POST /todos: create a todo (authenticated).
 func (h *TodoHandler) CreateTodo(w http.ResponseWriter, r *http.Request) {
 	
-	var todo models.Todolist
+	var todo models.Todo
 	err := json.NewDecoder(r.Body).Decode(&todo)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)

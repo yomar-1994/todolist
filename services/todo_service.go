@@ -7,14 +7,14 @@ import (
 	"github.com/google/uuid"
 )
 
-type TodoServioce struct {
+type TodoService struct {
 	Repo repository.TodoRepository
 }
 
-func (s *TodoServioce) CreateTodo(req models.Todolist) error {
+func (s *TodoService) CreateTodo(req *models.Todo) error {
 
 	// check it doesnt exist in the db already
-	_, err := s.Repo.GetTodoByName(req.Name)
+	_, err := s.Repo.GetTodoByName(req.Title)
 	if err == nil {
 		return err
 	}

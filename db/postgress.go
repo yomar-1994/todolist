@@ -5,7 +5,6 @@ import (
 	"log"
 	"os"
 	"todolist/models"
-
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -29,7 +28,9 @@ func InitDb() {
 		panic(err)
 	}
 	// migragte the schema
-	err = DB.AutoMigrate(&models.User{}, &models.Todolist{})
+	err = DB.AutoMigrate(&models.User{}, &models.Todo{})
+
+
 	if err != nil {
 		log.Fatal("failed to migrate the schema", err)
 	}

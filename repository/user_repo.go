@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"todolist/db"
 	"todolist/models"
 )
 type UserRepository interface {

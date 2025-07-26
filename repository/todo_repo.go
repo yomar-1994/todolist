@@ -6,25 +6,25 @@ import (
 )
 
 type TodoRepository interface {
-	GetTodoByName(name string) (*models.Todolist, error)
-	CreateTodo(todo *models.Todolist) error
+	GetTodoByName(name string) (*models.Todo, error)
+	CreateTodo(todo *models.Todo) error
 }
 
 type TodoRepo struct{}
 
-func (r *TodoRepo) GetTodoByName(name string) (*models.Todolist, error) {
-	var todo models.Todolist
-	err := Db.DB.Where("name = ?", todo.Name).First(&todo).Error
+func (r *TodoRepo) GetTodoByName(name string) (*models.Todo, error) {
+	var todo models.Todo
+	err := db.DB.Where("title = ?", name).First(&todo).Error
 	if err != nil {
-		return &models.todolist{}, err
+		return &models.Todo{}, err
 	}
 
 	return &todo, nil
 
 }
 
-func (r *TodoRepo) CreateTodo(todo *models.Todolist) error {
-	err := Db.DB.Create(&todo).Error
+func (r *TodoRepo) CreateTodo(todo *models.Todo) error {
+	err := db.DB.Create(&todo).Error
 	if err != nil {
 		return  err
 	}

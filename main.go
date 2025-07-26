@@ -20,7 +20,7 @@ func main() {
 
 	// initialize service
 	userService := &services.UserService{Repo: UserRepo}
-	TodoService := &services.TodoServioce{Repo: todoRepo}
+	TodoService := &services.TodoService{Repo: todoRepo}
 
 	//initialize handlers
 	UserHandler := &handlers.UserHandler{Service: userService}

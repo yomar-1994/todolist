@@ -4,8 +4,8 @@ import "time"
 
 type Todo struct {
 	ID        string
-	title     string
-	completed bool
+	Title     string
+	Completed bool
 	UserID    string
-	createdAt time.Time
+	CreatedAt time.Time
 }
