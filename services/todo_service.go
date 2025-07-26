@@ -30,3 +30,13 @@ func (s *TodoService) CreateTodo(req *models.Todo) error {
 	return nil
 
 }
+
+func (s *TodoService) GetTodos() ([]models.Todo, error) {
+	// retrieve todolist of that user
+	todos, err := s.Repo.GetAllTodos()
+	if err != nil {
+		return nil, err
+	}
+
+	return todos, nil
+}

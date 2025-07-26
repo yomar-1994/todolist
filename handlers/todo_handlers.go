@@ -34,3 +34,17 @@ func (h *TodoHandler) CreateTodo(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusCreated)
 	json.NewEncoder(w).Encode(todo)
 }
+
+func (h *TodoHandler) GetTodos(w http.ResponseWriter, r *http.Request) {
+	
+    //call service layer directly 
+	todos, err := h.Service.GetTodos()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	//send reponse 
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(todos)
+}
