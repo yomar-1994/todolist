@@ -2,6 +2,7 @@ package routes
 
 import (
 	"todolist/handlers"
+	"todolist/middleware"
 
 	"github.com/gorilla/mux"
 )
@@ -15,14 +16,13 @@ func SetupRouter(UserHandler *handlers.UserHandler, todoHandler *handlers.TodoHa
 	r.HandleFunc("/login", UserHandler.Login).Methods("POST")
 
 	// //sub router for protected routes
-	
-	// protected := r.PathPrefix("/").Subrouter()
-	// protected.Use(auth.AuthMiddleware)
+	protected := r.PathPrefix("/").Subrouter()
+	protected.Use(middleware.AuthMiddleware)
 
 	// //authenticated routes
 	// protected.HandleFunc("/protect", handlers.ProtectedHandler).Methods("GET")
-	// protected.HandleFunc("/todos", handlers.CreateTodo).Methods("POST")
-	// protected.HandleFunc("/todos", handlers.GetTodos).Methods("GET")
+	protected.HandleFunc("/todos", todoHandler.CreateTodo).Methods("POST")
+	protected.HandleFunc("/todos", todoHandler.GetTodos).Methods("GET")
 	// protected.HandleFunc("/todos/{id}", handlers.UpdateTodo).Methods("PUT")
 	// protected.HandleFunc("/todos/{id}", handlers.DeleteTodo).Methods("DELETE")
 
